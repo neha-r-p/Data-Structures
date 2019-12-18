@@ -22,7 +22,13 @@ class LRUCache:
     key-value pair doesn't exist in the cache.
     """
     def get(self, key):
-        pass
+        #returns value associated with key (if nonexistent, return None)
+        if key not in self.storage:
+            return None
+        #Moves k:v pair to most-recently used
+        self.order.move_to_front(self.storage[key])
+        #retrieves value associated with key
+        return self.storage[key].value[1]
 
     """
     Adds the given key-value pair to the cache. The newly-
@@ -35,4 +41,22 @@ class LRUCache:
     the newly-specified value.
     """
     def set(self, key, value):
-        pass
+        #if key exists in cache, 
+        if key in self.storage:
+            #overwrite (update dictionary) 
+            node = self.storage[key]
+            node.value = (key, value)
+            #and put at head
+            self.order.move_to_front(node)
+            return
+
+        #If cache is at max capacity, remove oldest entry to make room (remove from tail)
+        if self.size == self.limit:
+            del self.storage[self.order.tail.value[0]]
+            self.order.remove_from_tail()
+            self.size -= 1
+        #Add k:v pair to cache into most recently used
+            # add node to head in DLL and add k:v to dictionary
+        self.order.add_to_head((key, value))
+        self.storage[key] = self.order.head
+        self.size += 1
