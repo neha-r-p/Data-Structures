@@ -26,9 +26,10 @@ class LRUCache:
         if key not in self.storage:
             return None
         #Moves k:v pair to most-recently used
-        self.order.move_to_front(self.storage[key])
+        node = self.storage[key]
+        self.order.move_to_front(node)
         #retrieves value associated with key
-        return self.storage[key].value[1]
+        return node.value[1]
 
     """
     Adds the given key-value pair to the cache. The newly-
@@ -49,7 +50,6 @@ class LRUCache:
             #and put at head
             self.order.move_to_front(node)
             return
-
         #If cache is at max capacity, remove oldest entry to make room (remove from tail)
         if self.size == self.limit:
             del self.storage[self.order.tail.value[0]]
