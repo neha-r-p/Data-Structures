@@ -17,12 +17,12 @@ class BinarySearchTree:
         # keep going (recursion)
         
         if value < self.value:
-            if self.left == None:
+            if self.left is None:
                 self.left = BinarySearchTree(value)
                 return
             return self.left.insert(value)
         if value >= self.value:
-            if self.right == None:
+            if self.right is None:
                 self.right = BinarySearchTree(value)
                 return
             return self.right.insert(value)
@@ -38,18 +38,18 @@ class BinarySearchTree:
             return True
         # go left or right based on smaller or bigger
         if target < self.value:
-            if self.left == None:
+            if self.left is None:
                 return False
             return self.left.contains(target)
         if target > self.value:
-            if self.right == None:
+            if self.right is None:
                 return False
             return self.right.contains(target)
         
     # Return the maximum value found in the tree
     def get_max(self):
         # otherwise return self.value
-        if self.right == None:
+        if self.right is None:
             return self.value
         # if right exists, go right
         return self.right.get_max()
