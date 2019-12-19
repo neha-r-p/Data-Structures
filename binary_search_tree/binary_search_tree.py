@@ -80,10 +80,14 @@ class BinarySearchTree:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        #go to the very right of the tree and print
+        #go to the very left of the tree and print
+        if node is not None:
+            node.in_order_print(node.left)
+            print(node.value)
+            node.in_order_print(node.right)
+
         #move to parent and print
-        #move left of parent and check for children...if no children, print. if children, loop
-        pass
+        #move right of parent and check for children...if no children, print. if children, loop
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
@@ -92,19 +96,19 @@ class BinarySearchTree:
 #        Make a queue
         queue = Queue()
 #       Put root in the queue
-        queue.enqueue(self)
+        queue.enqueue(node)
 #       While queue is not empty
         while queue.len() > 0:
 #       pop out front of queue
-            current = queue.dequeque()
+            node = queue.dequeue()
 # 	    DO THE THING!
-            print(current)
+            print(node.value)
 #       if left: add left to bck of queue
-            if self.left:
-                queue.enqueue(self.left)
+            if node.left:
+                queue.enqueue(node.left)
 #        if right: add right to back of queue
-            if self.right:
-                queue.enqueue(self.right)
+            if node.right:
+                queue.enqueue(node.right)
 
 
     # Print the value of every node, starting with the given node,
@@ -114,19 +118,19 @@ class BinarySearchTree:
     # Make a stack
         stack = Stack()
     # put root in stack
-        stack.push(self)
+        stack.push(node)
     # while stack not empty
         while stack.len() > 0:
     #     pop root out of stack
-            current = stack.pop()
+            node = stack.pop()
     #     DO THE THING!!!!
-            print(current)
+            print(node.value)
     #     if left: add left to stack
-            if self.left:
-                stack.push(self.left)
+            if node.left:
+                stack.push(node.left)
     #     if right: add right to stack
-            if self.right:
-                stack.push(self.right)
+            if node.right:
+                stack.push(node.right)
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
