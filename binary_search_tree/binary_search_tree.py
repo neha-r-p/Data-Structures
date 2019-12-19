@@ -57,28 +57,76 @@ class BinarySearchTree:
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
     def for_each(self, cb):
+        cb(self.value)
         if self.right:
             self.right.for_each(cb)
         if self.left:
             self.left.for_each(cb)
-        return cb(self.value)
+
+        # iterative for DFT
+        # stack = Stack()
+        # stack.push(self)
+        # while stack.length > 0:
+        #     current_node = stack.pop()
+        #     if current_node.right:
+        #         stack.push(current_node.right)
+        #     if current_node.left:
+        #         stack.push(current_node.left)
+        #     cb(current_node.value)
+
 
     # DAY 2 Project -----------------------
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
+        #go to the very right of the tree and print
+        #move to parent and print
+        #move left of parent and check for children...if no children, print. if children, loop
         pass
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
+#     Breadth First Traversal
     def bft_print(self, node):
-        pass
+#        Make a queue
+        queue = Queue()
+#       Put root in the queue
+        queue.enqueue(self)
+#       While queue is not empty
+        while queue.len() > 0:
+#       pop out front of queue
+            current = queue.dequeque()
+# 	    DO THE THING!
+            print(current)
+#       if left: add left to bck of queue
+            if self.left:
+                queue.enqueue(self.left)
+#        if right: add right to back of queue
+            if self.right:
+                queue.enqueue(self.right)
+
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
+
     def dft_print(self, node):
-        pass
+    # Make a stack
+        stack = Stack()
+    # put root in stack
+        stack.push(self)
+    # while stack not empty
+        while stack.len() > 0:
+    #     pop root out of stack
+            current = stack.pop()
+    #     DO THE THING!!!!
+            print(current)
+    #     if left: add left to stack
+            if self.left:
+                stack.push(self.left)
+    #     if right: add right to stack
+            if self.right:
+                stack.push(self.right)
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
